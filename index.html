@@ -9,10 +9,11 @@
 
 	<div id="canvas"></div>
 	<div id="score">0</div>
+	<div id="leveldisplay">Level <span id="level">1</span></div>
 	<input type="text" id="word" name="word" placeholder="Enter Word" value="" />
-
+	<audio src="notify.wav" id="notify"></audio>
 	<script type="text/javascript">
-		var a = new PlayGround('canvas', 'word', 'score');
+		var a = new PlayGround('canvas', 'word', 'score', 'level');
 
 		setInterval("a.playGame()", 500);
 

@@ -9,13 +9,27 @@
 	font-family: "Courier New", Courier, monospace;
 	display:inline-block;
 	vertical-align: top;
+	background: url("words.jpg");
 }
 #word {
 	font-size:18px;
 	padding:7px;
 	width:500px;
 }
-
+#leveldisplay{
+	margin-top:10px;
+	margin-bottom:15px;
+	width:100px;
+	height:40px;
+	border:1px solid silver;
+	font-size:25px;
+	background-color:blue;
+	color:white;
+	display: inline-block;
+	vertical-align: top;
+	text-align: center;
+	padding-top:15px;
+}
 #score {
 	margin-top:10px;
 	margin-bottom:15px;

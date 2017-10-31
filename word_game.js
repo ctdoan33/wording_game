@@ -7,17 +7,19 @@
 *
 ****************************************************************/
 
-function PlayGround(selector, selector_word, selector_score)
+function PlayGround(selector, selector_word, selector_score, selector_level)
 {
 	this.canvas = document.getElementById(selector);
 	this.selector_word = selector_word;		//stores the id of the input where the user can type the word
 	this.selector_score = selector_score;	//stores the id of the div where the score is stored
+	this.selector_level = selector_level;
 
 	console.log(this.canvas);
 	this.words = [];
 	
 	this.score = 0;		//stores the user score
 	this.counter = 0;	//counts the number of words created
+	this.level = 1;
 
 	this.playGame = function()
 	{
@@ -32,10 +34,11 @@ function PlayGround(selector, selector_word, selector_score)
 		ini_score = this.score;
 		for(i in this.words)
 		{
-			if(this.words[i].word == typed)
+			while(this.words[i].word == typed)
 			{
 				console.log('#word_' + this.words[i].id);
 				$('#word_' + this.words[i].id).remove();
+				this.words.splice(i, 1);
 				this.score = this.score + 50;
 			}
 		}
@@ -44,6 +47,11 @@ function PlayGround(selector, selector_word, selector_score)
 		{
 			$('#'+this.selector_word).val('');
 			$('#'+this.selector_score).text(this.score);
+			$('#notify')[0].play();
+			if(this.score>this.level*1000){
+				this.level++;
+				$('#'+this.selector_level).text(this.level);
+			}
 		}
 	}
 	//create a new Word and add the Word into the canvas
@@ -66,7 +74,7 @@ function PlayGround(selector, selector_word, selector_score)
 	{
 		for(var i=this.words.length-1; i>=0; i--)
 		{
-			this.words[i].y = this.words[i].y + 15;	
+			this.words[i].y = this.words[i].y + this.level*5;	
 
 			if(this.words[i].y > 385)
 			{
@@ -93,7 +101,7 @@ function PlayGround(selector, selector_word, selector_score)
 
 function Word(id)
 {
-	var words = ["Coding", "Dojo", "awesome", "rocks", "amazing"];
+	var words = ["Coding", "Dojo", "awesome", "rocks", "amazing", "algorithm", "function", "variable"];
 	this.x = 0;
 	this.y = 0;
 	this.id = id;
